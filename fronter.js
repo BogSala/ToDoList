@@ -1,3 +1,30 @@
+function doAjax() {
+    let credit = parseInt($('#credit').val());
+    let multiplier = parseInt($('#multiplier').val()); 
+    let duration =  parseInt($('#duration').val());
+    let creditType = $('select').val();
+    $.ajax({
+    url: 'http://localhost/ITStartPHP/Lection9/back.php',
+    type: 'POST',
+    async: false ,
+    dataType: 'json' ,
+    data: {
+        credit: credit ,
+        multiplier: multiplier,
+        duration: duration ,
+        creditType : creditType 
+    } ,success: function(data){
+
+        console.log(data.price)
+        $('#dataholder').text(data.price )
+    }
+    ,
+    error: function(){
+    console.log('ERROR');
+    }
+
+})
+}
 
 function plus(){
     addTask($('#inputer').val())
