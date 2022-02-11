@@ -1,3 +1,11 @@
+$(document).ready(function() {
+    $('input').keydown(function(e) {
+      if(e.keyCode === 13) {
+          plus()
+      }
+    });
+  });
+
 function doAjax(number , text , requestType) {
     $.ajax({
     url: 'php/setter.php',
@@ -22,6 +30,7 @@ function doAjax(number , text , requestType) {
 })
 }
 
+var task = document.createElement('tr')
 
 window.onbeforeunload = function(){
 
@@ -31,32 +40,22 @@ window.onbeforeunload = function(){
     // dataType: 'json' ,
     })
     
- }
-
-
-function plus(){
-    addTask($('#inputer').val())
-    inputClear()
 }
 
 function counting(){
     return ($('.head').children().size() - 1)
 }
 
-$(document).ready(function() {
-  $('input').keydown(function(e) {
-    if(e.keyCode === 13) {
-        plus()
-    }
-  });
-});
-
-function removeTask(){
-    $(this).parent().parent().remove();
-    
+function backAdd(){
+    addTask($('#inputer').val())
+    inputClear()
 }
 
-var task = document.createElement('tr')
+function backRemove(){
+    let number = $(this).parent().parent().attr('number');
+    doAjax(number  , null , 'delete')
+    $(this).parent().parent().remove();    
+}
 
 function inputClear(){
     document.getElementById('inputer').value = ""
@@ -86,6 +85,11 @@ function addTask(task){
     doAjax(counting()  , task , 'add')
 }
 
-
+function deleteTask(){
+    //pass
+}
+function ia_ebal_apach(){
+    console.log('apach, sosi hui')
+}
 
 

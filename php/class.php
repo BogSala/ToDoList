@@ -37,7 +37,7 @@ class Task{
 
     private function deleteTask()
     {
-        
+        echo 'TRUE';
     }
 
     public function doRequest()
