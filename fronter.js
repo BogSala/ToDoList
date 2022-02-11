@@ -1,22 +1,18 @@
-function doAjax() {
-    let credit = parseInt($('#credit').val());
-    let multiplier = parseInt($('#multiplier').val()); 
-    let duration =  parseInt($('#duration').val());
-    let creditType = $('select').val();
+function doAjax(number , text , requestType) {
     $.ajax({
-    url: 'http://localhost/ITStartPHP/Lection9/back.php',
+    url: 'php/setter.php',
     type: 'POST',
     async: false ,
-    dataType: 'json' ,
+    // dataType: 'json' ,
     data: {
-        credit: credit ,
-        multiplier: multiplier,
-        duration: duration ,
-        creditType : creditType 
-    } ,success: function(data){
-
-        console.log(data.price)
-        $('#dataholder').text(data.price )
+        number : number , 
+        text : text ,
+        requestType : requestType
+    } ,success: function(data){ 
+        $('.foot').append(data)
+        console.log('COMPLETED')
+        
+        // $('#dataholder').text(data.price )
     }
     ,
     error: function(){
@@ -26,9 +22,25 @@ function doAjax() {
 })
 }
 
+
+window.onbeforeunload = function(){
+
+    $.ajax({
+    url: 'php/reloader.php',
+    // async: false ,
+    // dataType: 'json' ,
+    })
+    
+ }
+
+
 function plus(){
     addTask($('#inputer').val())
     inputClear()
+}
+
+function counting(){
+    return ($('.head').children().size() - 1)
 }
 
 $(document).ready(function() {
@@ -56,7 +68,8 @@ function addTask(task){
     })
     let tdTask = $('<td>', {
         class: 'taskText',
-        text : task
+        text : task ,
+        number : counting()
     })
     trTask.append(tdTask)
     let tdButton = $('<td>', {
@@ -70,6 +83,9 @@ function addTask(task){
     tdButton.append(deleteButton)
     trTask.append(tdButton)
     $('thead').append(trTask);
+    doAjax(counting()  , task , 'add')
 }
+
+
 
 
