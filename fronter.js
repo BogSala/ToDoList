@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('input').keydown(function(e) {
       if(e.keyCode === 13) {
-          plus()
+          backAdd()
       }
     });
   });
@@ -31,6 +31,7 @@ function doAjax(number , text , requestType) {
 }
 
 var task = document.createElement('tr')
+var numberCounter = 0
 
 window.onbeforeunload = function(){
 
@@ -43,10 +44,13 @@ window.onbeforeunload = function(){
 }
 
 function counting(){
-    return ($('.head').children().size() - 1)
+    // numberCounter++
+    return numberCounter
+    // return ($('.head').children().size() - 1)
 }
 
 function backAdd(){
+    numberCounter++
     addTask($('#inputer').val())
     inputClear()
 }
@@ -63,7 +67,8 @@ function inputClear(){
 
 function addTask(task){
     let trTask = $('<tr>', {
-        class: 'task'
+        class: 'task' ,
+        number : counting()
     })
     let tdTask = $('<td>', {
         class: 'taskText',
@@ -78,7 +83,7 @@ function addTask(task){
         class: 'delete',
         text : '✖',
     })
-    deleteButton.on("click" , removeTask)
+    deleteButton.on("click" , backRemove)
     tdButton.append(deleteButton)
     trTask.append(tdButton)
     $('thead').append(trTask);
@@ -87,9 +92,6 @@ function addTask(task){
 
 function deleteTask(){
     //pass
-}
-function ia_ebal_apach(){
-    console.log('apach, sosi hui')
 }
 
 

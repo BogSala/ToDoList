@@ -37,7 +37,8 @@ class Task{
 
     private function deleteTask()
     {
-        echo 'TRUE';
+        // echo 'TRUE';
+        sqlRemove($this -> number );
     }
 
     public function doRequest()

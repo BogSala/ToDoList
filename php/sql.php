@@ -29,6 +29,11 @@ function sqlAdd($number ,  $task) // SELECT name FROM tasks WHERE task =
     $stmt->execute(array($number , $task));
 }
 
-
+function sqlRemove($number)
+{
+    global $pdo;
+    $stmt = $pdo->prepare('DELETE FROM `tasks` WHERE number = ? ');
+    $stmt->execute(array($number));
+}
 
 // for ($data = []; $row = mysqli_fetch_assoc($sqlTable); $data[] = $row);  
