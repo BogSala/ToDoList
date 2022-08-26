@@ -1,13 +1,22 @@
 <?php 
 
 
-class Model 
+class Model
 {
 
     function __construct()
     {
-        // $this->db = new SQLite3("test.db");
-        $this->pdo = new PDO('sqlite:ToDoList.db');
+        $this->pdo = new PDO('sqlite:../storage/ToDoList.db');
+    }
+
+    public function newRequest($type , $login , $password)
+    {
+        switch ($type) {
+            case 'userAdd':
+                return $this->userAdd($login , $password);
+            case 'userLogin':
+                return $this->userLogin("admin" , "admin");
+        }
     }
 
     public function returnAll()
@@ -19,27 +28,29 @@ class Model
     public function userAdd($login , $password)
     {   
         $this->pdo->prepare('INSERT INTO users (login, password) VALUES (?, ?)')->execute([$login, $password]);
-        if ($this->pdo->prepare("SELECT * FROM users WHERE login=?")->execute([$login])){
-            return true;
-        };
-        // return $result;
+        $stmt = $this->pdo->prepare("SELECT login,password FROM users WHERE login = :login");
+        $stmt->execute([':login'=>$login]);
+        return $stmt->fetchAll();
+        
     }
 
     public function userLogin($login , $password)
-    {
+    {   
+
         try {
-            //? Без захисту від прямих ін'єкцій бо я можу собі дозволити
-            $createdUser = $this->pdo->query("SELECT * FROM users WHERE login = '$login' AND password = '$password'")->fetchAll();
+            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE login = :login AND password = :password");
+            $stmt->execute([':login'=>$login , ':password' => $password]);
+
             
         } catch (Exception $e){
             return 'Eror:'.  $e->getMessage()."\n";
         };
 
-        if (!$createdUser) {
-            return false;
+        if ($result = $stmt->fetchAll()) {
+            return $result;
         };
 
-        return($createdUser);
+        return 'Cant login';
     }
 
 }
