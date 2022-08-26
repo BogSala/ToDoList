@@ -7,10 +7,6 @@ $db_name = 'itstart';
 
 $link = mysqli_connect($host , $user , $password , $db_name) or die(mysqli_error($conections));
 mysqli_query($link, "SET TEXT 'utf8'");
-// ! $fullTable = mysqli_query( $link, "SELECT * FROM `tasks`" );
-
-// ! $reset = 'ALTER TABLE `tasks` AUTO_INCREMENT = 1';
-// ! $fullReset = 'TRUNCATE TABLE `tasks`';
 
 // toDo Задать 
 $charset = 'utf8';
@@ -21,6 +17,11 @@ $opt = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 $pdo = new PDO($dsn, $user, $password , $opt);
+
+// ! $fullTable = mysqli_query( $link, "SELECT * FROM `tasks`" );
+
+// ! $reset = 'ALTER TABLE `tasks` AUTO_INCREMENT = 1';
+// ! $fullReset = 'TRUNCATE TABLE `tasks`';
 
 function sqlAdd($number ,  $task) // SELECT name FROM tasks WHERE task =
 {   
