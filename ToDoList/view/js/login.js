@@ -1,5 +1,5 @@
 
-const path = '../../controller/controller.php'
+const path = '../../controller/LoginController.php'
 const control = new Controller()
 
 $('.sign-up-button').click(function() {

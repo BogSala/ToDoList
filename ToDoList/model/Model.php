@@ -15,7 +15,7 @@ class Model
             case 'userAdd':
                 return $this->userAdd($login , $password);
             case 'userLogin':
-                return $this->userLogin("admin" , "admin");
+                return $this->userLogin($login , $login);
         }
     }
 

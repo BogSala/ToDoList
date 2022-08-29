@@ -22,11 +22,25 @@ class Controller{
             requestType : requestType
         } ,success: function(data){ 
             console.log(data)
+            try {
+                let json = JSON.parse(data)
+                if (json['status'] == 'false'){
+                    alert("Code2: Oops , we have some errors..")
+                } else if (json['body'] == "Cant login"){
+                    alert("Username or nickname is wrong")
+                } else {
+                    window.location.href = 'http://localhost/projects/ToDoList/view/html/main.html';
+                }
+            } catch {
+                alert("Code1: Oops , we have some errors..")
+            }
+                
+            
             console.log('COMPLETED')
         }
         ,
         error: function(){
-            alert('We have error');
+            alert('Code3: Oops , we have some errors..');
         }
     
     })
