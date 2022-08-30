@@ -1,6 +1,6 @@
 
 const path = '../../controller/LoginController.php'
-const control = new Controller()
+const control = new LoginController()
 
 $('.sign-up-button').click(function() {
     var login = $('.login-input').val()

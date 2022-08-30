@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +14,7 @@
     <div class="display">Mine, absolutely useless, made in an hour without normal classes and a framework, </div>
     <div class="display">which I will forget about tomorrow*</div>
     <div class="display-1">Super cool ToDO list!!! &#128293;</div>
+    <span id='holder' style='display:none'><?php session_start(); echo json_encode($_SESSION) ?></span>
     <div class="table-responsive mt-4 ">
         <table class="mx-auto w-auto">
             <thead class='head'>
@@ -64,7 +64,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="front.js"></script>
-    <script src="../js/AjaxController.js"></script>
+    <script src="../js/MainController.js"></script>
+    <!-- <script src="../js/LoginController.js"></script> -->
+    <script src="../js/front.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
