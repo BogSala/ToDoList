@@ -1,16 +1,8 @@
 
-
-class LoginController{
-
-    // redirectPath = 'http://localhost/projects/ToDoList/view/html/main.html'
-    redirectPath = 'http://localhost/projects/ToDoList/controller/test.php'
-
-    userAdd(path ,login , password) {
-        this.doAjax(path , login , password , 'userAdd')
-    }
+class MainController{
 
     userLogin(path ,login , password) {
-        this.doAjax(path , login , password , 'userLogin')
+        this.doAjax(path ,login , password , 'userLogin')
     }
 
     doAjax(path ,login , password , requestType) {
@@ -29,21 +21,23 @@ class LoginController{
                 let json = JSON.parse(data)
                 if (json['status'] == 'false'){
                     alert("Code2: Oops , we have some errors..")
+                    // window.location.href = 'http://localhost/projects/ToDoList/view/html/login.html';
+
                 } else if (json['body'] == "Cant login"){
                     alert("Username or nickname is wrong")
-                } else {
-                    window.location.href = 'http://localhost/projects/ToDoList/view/html/main.php';
+                    // window.location.href = 'http://localhost/projects/ToDoList/view/html/login.html'
                 }
             } catch {
                 alert("Code1: Oops , we have some errors..")
+                // window.location.href = 'http://localhost/projects/ToDoList/view/html/login.html';
             }
                 
-            
             console.log('COMPLETED')
         }
         ,
         error: function(){
             alert('Code3: Oops , we have some errors..');
+            // window.location.href = 'http://localhost/projects/ToDoList/view/html/login.html';
         }
     
     })

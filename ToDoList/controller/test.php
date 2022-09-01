@@ -1,11 +1,15 @@
 <?php
 
-// require 'Model.php';
+require '../model/TaskList.php';
 
-// $model = new Model();
-session_start();
+$model = new TaskList();
 
-var_dump($_SESSION);
+
+
+print_r($model->add(1 , 12));
+// session_start();
+
+// var_dump($_SESSION);
 // var_dump($model->returnAll());
 // var_dump($model->getUser('admin' , 'admin'));
 // if ($model->newRequest("userLogin" , 'admin' , 'admin')){

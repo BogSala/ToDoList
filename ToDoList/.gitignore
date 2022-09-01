@@ -2,3 +2,4 @@ test
 test/*
 model(mysql)
 model(mysql)/*
+controller/test.php

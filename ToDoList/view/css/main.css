@@ -2,6 +2,10 @@ div {
     text-align: center;
 } 
 
+.hid{
+  display: none;
+}
+
 body{
   min-height: 100vh;
   background-color: #4158D0;

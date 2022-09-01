@@ -1,12 +1,13 @@
 <?php 
 
 
-class Model
+class User
 {
+
 
     function __construct()
     {
-        $this->pdo = new PDO('sqlite:../storage/ToDoList.db');
+        $this->pdo = new PDO('sqlite:C:\xampp\htdocs\projects\ToDoList\storage\ToDoList.db');
     }
 
     public function newRequest($type , $login , $password)
@@ -19,6 +20,8 @@ class Model
         }
     }
 
+
+
     public function returnAll()
     {
         $result = $this->pdo->query("SELECT * FROM users")->fetchAll();
@@ -27,10 +30,15 @@ class Model
 
     public function userAdd($login , $password)
     {   
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE login = :login AND password = :password");
+        $stmt->execute([':login'=>$login , ':password' => $password]);
+        if ($stmt->fetchAll()){
+            return "Username taken";
+        }
         $this->pdo->prepare('INSERT INTO users (login, password) VALUES (?, ?)')->execute([$login, $password]);
         $stmt = $this->pdo->prepare("SELECT login,password FROM users WHERE login = :login");
-        $stmt->execute([':login'=>$login]);
-        return $stmt->fetchAll();
+        $result  = $stmt->execute([':login'=>$login]);
+        return $result;
         
     }
 
@@ -41,7 +49,6 @@ class Model
             $stmt = $this->pdo->prepare("SELECT * FROM users WHERE login = :login AND password = :password");
             $stmt->execute([':login'=>$login , ':password' => $password]);
 
-            
         } catch (Exception $e){
             return 'Eror:'.  $e->getMessage()."\n";
         };
