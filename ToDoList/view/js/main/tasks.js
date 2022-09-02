@@ -9,11 +9,18 @@ $('.add-button').click(function() {
     controller.addTask(path, userId , taskText)
 })
 
+$('.delete-button').click(function() {
+    let row = ($(this).parent().parent())
+    let rowId =  row.attr('id')
+    console.log(rowId)
+    controller.deleteTask(path, userId, rowId)
+})
+
 function createTask(id , taskText){
     let newTask = standartTask.clone()
     newTask.attr('id' ,id)
     newTask.removeClass('hid')
     let div = newTask.children()[0].children[0]   
     div.innerHTML = taskText
-    $('.foot').append(newTask)
+    $('.foot').prepend(newTask)
 }

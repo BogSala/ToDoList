@@ -10,9 +10,9 @@ $response = $user->newRequest($_POST['requestType'] , $_POST['login'] , $_POST['
 
 if ($response){
     $jsonResponse= array("body" =>$response , "status" =>true ,"type" => $_POST['requestType']);
-    $_SESSION['id'] = $response[0]['id'];
-    $_SESSION['login'] = $_POST['login'];
-    $_SESSION['password'] = $_POST['password'];
+    $_COOKIE['id'] = $response[0]['id'];
+    $_COOKIE['login'] = $_POST['login'];
+    $_COOKIE['password'] = $_POST['password'];
     echo json_encode($jsonResponse);
 
 } else {

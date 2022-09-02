@@ -6,7 +6,7 @@ $model = new TaskList();
 
 
 
-print_r($model->add(1 , 12));
+print_r($model->delete(52));
 // session_start();
 
 // var_dump($_SESSION);
