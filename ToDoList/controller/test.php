@@ -1,12 +1,13 @@
 <?php
 
-require '../model/TaskList.php';
+require '../model/User.php';
 
-$model = new TaskList();
+$model = new User();
 
 
-
-print_r($model->delete(52));
+// $response = $model->userLogin( 'adminok' , 'admin');
+// print_r($response);
+print_r($model->newRequest( 'userLogin','adminok' , 'admin'));
 // session_start();
 
 // var_dump($_SESSION);

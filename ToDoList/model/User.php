@@ -16,7 +16,7 @@ class User
             case 'userAdd':
                 return $this->userAdd($login , $password);
             case 'userLogin':
-                return $this->userLogin($login , $login);
+                return $this->userLogin($login , $password);
         }
     }
 
@@ -36,9 +36,9 @@ class User
             return "Username taken";
         }
         $this->pdo->prepare('INSERT INTO users (login, password) VALUES (?, ?)')->execute([$login, $password]);
-        $stmt = $this->pdo->prepare("SELECT login,password FROM users WHERE login = :login");
-        $result  = $stmt->execute([':login'=>$login]);
-        return $result;
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE login = :login");
+        $stmt->execute([':login'=>$login]);
+        return $stmt->fetchAll();
         
     }
 
